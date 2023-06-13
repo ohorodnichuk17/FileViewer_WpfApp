@@ -1,0 +1,27 @@
+﻿<Window x:Class="FileViewer_WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileViewer_WpfApp"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        Title="MainWindow" Height="450" Width="500">
+    <DockPanel Margin="7">
+        <DockPanel DockPanel.Dock="Top">
+            <Label>Directory:</Label>
+            <Button Click="Button_Click" DockPanel.Dock="Right" Margin="5">Browse</Button>
+            <TextBox VerticalContentAlignment="Center" Text="{Binding DirectoryName, Mode=OneWay}"></TextBox>
+        </DockPanel>
+        <StackPanel DockPanel.Dock="Bottom">
+            <TextBlock TextAlignment="Center">Information</TextBlock>
+            <TextBlock>Name: <Run Text="{Binding SelectedFile.Name, Mode=OneWay}"/></TextBlock>
+            <TextBlock>Size: <Run Text="{Binding SelectedFile.Length, Mode=OneWay}"/></TextBlock>
+            <TextBlock>Created: <Run Text="{Binding SelectedFile.CreationTime, Mode=OneWay}"/></TextBlock>
+            <TextBlock>Modified: <Run Text="{Binding SelectedFile.LastWriteTime, Mode=OneWay}"/></TextBlock>
+        </StackPanel>
+
+        <TextBlock TextAlignment="Center" DockPanel.Dock="Top">Files</TextBlock>
+        <ListBox x:Name="list" ItemsSource="{Binding Files}" SelectedItem="{Binding SelectedFile}"></ListBox>
+    </DockPanel>
+</Window>
